@@ -17,7 +17,7 @@ public class Analyzer {
 
     public static void readJson() {
         JSONParser parser = new JSONParser();
-        try (FileReader readFile = new FileReader("CompanyTargets.json")) {
+        try (FileReader readFile = new FileReader("Company targets.json")) {
             Object temp = parser.parse(readFile);
             companyList = (JSONArray) temp;
             //companyList.forEach(company -> getCompany((JSONObject) company));
