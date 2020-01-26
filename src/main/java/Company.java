@@ -11,6 +11,13 @@ public class Company {
         this.location = location;
     }
 
+    public Company() {
+        name = "Default Company";
+        status = "";
+        revenue = 0;
+        location = "Jinwoo-ville";
+    }
+
     public String getName() {
         return name;
     }

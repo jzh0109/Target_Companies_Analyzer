@@ -13,7 +13,7 @@ public class Analyzer {
     private static String status;
     private static long revenue;
     private static String location;
-    static JSONArray companyList;
+    private static JSONArray companyList;
 
     public static void readJson() {
         JSONParser parser = new JSONParser();
@@ -57,6 +57,10 @@ public class Analyzer {
         return location;
     }
 
+    public static JSONArray getCompanies() {
+        return companyList;
+    }
+
     public static CompanyStatus getStatusCounts(JSONArray companies) {
         int researchingCount = 0;
         int approvedCount = 0;
@@ -78,7 +82,6 @@ public class Analyzer {
     }
 
     public static Company getClosestRevenueCompany(JSONArray companies, long desiredRevenue) {
-        Company closestCompany = new Company("", "", 0, "Jinwoo-ville");
         long lowestDifference = getRevenue((JSONObject) companies.get(0)), temp;
         int index = 0;
         //System.out.println(desiredRevenue);
@@ -92,15 +95,14 @@ public class Analyzer {
             }
         }
         JSONObject foundCompany = (JSONObject) companies.get(index);
-        closestCompany = new Company(getName(foundCompany), getStatus(foundCompany), getRevenue(foundCompany), getLocation(foundCompany));
-        return closestCompany;
+        return new Company(getName(foundCompany), getStatus(foundCompany), getRevenue(foundCompany), getLocation(foundCompany));
     }
 
     public static void main(String[] args) {
         readJson();
-        CompanyStatus statusCount = getStatusCounts(companyList);
+        CompanyStatus statusCount = getStatusCounts(getCompanies());
         System.out.println(statusCount.toString());
-        Company closestCompany = getClosestRevenueCompany(companyList, 1010000000L);
+        Company closestCompany = getClosestRevenueCompany(getCompanies(), 6851000000L);
         System.out.println(closestCompany.getName());
     }
 }
