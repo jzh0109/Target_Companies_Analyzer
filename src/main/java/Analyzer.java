@@ -29,13 +29,6 @@ public class Analyzer {
             e.printStackTrace();
         }
     }
-    //Method used to find information on a specific company
-    /*public static void getCompany(JSONObject company) {
-        name = company.get("Name").toString();
-        status = company.get("Status").toString();
-        revenue = Integer.parseInt(company.get("Revenue").toString());
-        location = company.get("Location").toString();
-    }*/
 
     public static String getName(JSONObject company) {
         name = company.get("Name").toString();
