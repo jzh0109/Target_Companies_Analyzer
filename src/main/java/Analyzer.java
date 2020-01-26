@@ -80,15 +80,19 @@ public class Analyzer {
     public static Company getClosestRevenueCompany(JSONArray companies, long desiredRevenue) {
         Company closestCompany = new Company("", "", 0, "Jinwoo-ville");
         long lowestDifference = getRevenue((JSONObject) companies.get(0)), temp;
+        int index = 0;
         //System.out.println(desiredRevenue);
         for (int i = 0; i < companies.size(); i++) {
             JSONObject company = (JSONObject) companies.get(i);
             temp = Math.abs(desiredRevenue - getRevenue(company));
             if (temp < lowestDifference) {
                 lowestDifference = temp;
-                closestCompany = new Company(getName(company), getStatus(company), getRevenue(company), getLocation(company));
+                //closestCompany = new Company(getName(company), getStatus(company), getRevenue(company), getLocation(company));
+                index = i;
             }
         }
+        JSONObject foundCompany = (JSONObject) companies.get(index);
+        closestCompany = new Company(getName(foundCompany), getStatus(foundCompany), getRevenue(foundCompany), getLocation(foundCompany));
         return closestCompany;
     }
 
