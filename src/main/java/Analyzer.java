@@ -77,13 +77,11 @@ public class Analyzer {
     public static Company getClosestRevenueCompany(JSONArray companies, long desiredRevenue) {
         long lowestDifference = getRevenue((JSONObject) companies.get(0)), temp;
         int index = 0;
-        //System.out.println(desiredRevenue);
         for (int i = 0; i < companies.size(); i++) {
             JSONObject company = (JSONObject) companies.get(i);
             temp = Math.abs(desiredRevenue - getRevenue(company));
             if (temp < lowestDifference) {
                 lowestDifference = temp;
-                //closestCompany = new Company(getName(company), getStatus(company), getRevenue(company), getLocation(company));
                 index = i;
             }
         }
@@ -96,6 +94,6 @@ public class Analyzer {
         CompanyStatus statusCount = getStatusCounts(getCompanies());
         System.out.println(statusCount.toString());
         Company closestCompany = getClosestRevenueCompany(getCompanies(), 6851000000L);
-        System.out.println(closestCompany.getName());
+        System.out.println("\nCompany with revenue closest to target value 6851000000: " + closestCompany.getName());
     }
 }
